@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FinTrack Pro</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+  rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div class="page-entry"> 
+            <div class="login-form">
+
+                <h1>Welcome back</h1>
+                <h4>Login to FinTrack Pro</h4>
+                <form class="login-inputs">
+                    <p>Username</p>
+                    <input type="text" id="loginUsername">
+                    <p>Password</p>
+                    <input type="text" id="loginPassword">
+                    <span class="auth-error" id="loginError"></span>
+                    <button type="submit" class="log-submit">Login</button>
+                </form>
+                <p class="no-acc">Don't have an account? <a href="#" class="showRegister">Register here.</a></p>
+            </div>
+
+            <div class="register-form">
+                <h1>Create Account</h1>
+                <h4>Join FinTrack Pro</h4>
+                <form class="register-inputs">
+                    <p>First Name</p>
+                    <input type="text" id="regFirstName" required>
+                    <p>Last name</p>
+                    <input type="text" id="regLastName" required>
+                    <p>Username</p>
+                    <input type="text" id="regUsername" required>
+                    <p>Password</p>
+                    <input type="text" id="regPassword" required>
+                    <span class="auth-error" id="registerError"></span>
+                    <button type="submit" class="reg-submit">Register</button>
+                </form>
+                <p class="no-acc">Already have a account?<a href="#" class="showLogin">Login</a> </p>
+
+            </div>
+
+        </div>
+        <div class="main-section">
+            <div class="side-bar">
+                <div class="title">
+                    <i class="ri-stack-fill"></i>
+                    <div class="title-name">
+                        <h4>FinTrack Pro</h4>
+                        <p>Enterprise Finance</p>
+                    </div>
+                </div>
+                <div class="menu">
+                    <button class="nav-btn active" data-target="dashboard-view">
+                        <i class="ri-dashboard-fill"></i>
+                        <span> Dashboard</span>
+                    </button>
+                    <button class="nav-btn" data-target="settings-view">
+                        <i class="ri-settings-3-fill"></i>
+                        <span>Setting</span>
+                    </button>
+                </div>
+                <div class="add">
+                    <button class="transactions add-trigger">
+                        <i class="ri-add-line"></i>
+                        <span class="add-transaction">Add Transaction</span>
+                    </button>
+                </div>
+            </div>
+        
+            <div class="floating-bar">
+                <button class="nav-btn active" data-target="dashboard-view"><i class="ri-dashboard-fill"></i></button>
+                <button class="nav-btn" data-target="settings-view"><i class="ri-settings-3-fill"></i></button>
+                <button class="add-trigger"><i class="ri-add-line"></i></button>  
+            </div>
+
+
+            <div class="display">
+                <nav>
+                    <!-- navigation bar for mobile -->
+                     <div class="nav-mobile">
+                        <div class="title-mobile">
+                            <i class="ri-stack-fill"></i>
+                            <div class="title-name">
+                                <h4>FinTrack Pro</h4>
+                                <p>Enterprise Finance</p>
+                            </div>
+                        </div>
+
+                        <div class="avatar-wrap">
+                            <button class="user-avatar" id="avatarBtn" ></button>
+                            <div class="avatar-menu" id="avatarMenu">
+                                <button class="logout-item">
+                                    <i class="ri-logout-box-r-line"></i>
+                                    <span>Log out</span>
+                                </button>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="nav-desktop">
+                        <h1 class="userFullName" style="color:var(--text-primary)"></h1>
+                        <div class="avatar-menu-desk" id="avatarMenu-desk">
+                            <button class="logout-item">
+                                <i class="ri-logout-box-r-line"></i>
+                                <span>Log out</span>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="functional-sec">
+
+                    <div class="main-dashboard" id="dashboard-view">
+                        <header>
+                            <h2>Financial Overview</h2>
+                            <p>Real-time tracking application</p>
+                        </header>
+
+
+                        <!-- next section-->
+                        <div class="section1">
+                            <div class="sub-sec">
+                                <i class="ri-bank-fill" style="background-color: lightblue;color:blue"></i>
+                                <h3>Current Balance</h3>
+                                <h2 id="balanceValue">$0</h2>
+                            </div>
+                            <div class="sub-sec">
+                                <i class="ri-arrow-right-up-long-line" style="background-color: lightgreen;color:green" ></i>
+                                <h3>Total Income</h3>
+                                <h2 id="incomeValue">$0</h2>
+                            </div>
+                            <div class="sub-sec">
+                                <i class="ri-arrow-right-down-long-line" style="background-color:rgb(253, 185, 185);color:red"></i>
+                                <h3>Total Expenses</h3>
+                                <h2 id="expenseValue">$0</h2>
+                            </div>
+                            <div class="sub-sec">
+                                <i class="ri-exchange-funds-line" style="background-color: rgba(26, 26, 123, 0.242);color:navy"></i>
+                                <h3>Total Transactions</h3>
+                                <h2 id="transactionCountValue">0</h2>
+                            </div>
+                        </div>
+
+                        <!--  section 2-->
+
+                        <div class="section-2">
+                            <div class="chart-card">
+                                <h3 class="card-title">Cash Flow Analysis</h3>
+                                <div class="chart-legend">
+                                    <span class="legend-item"><i class="legend-dot income"></i> Income</span>
+                                    <span class="legend-item"><i class="legend-dot expense"></i> Expenses</span>
+                                </div>
+                                <canvas id="cashFlowChart"></canvas>
+                            </div>
+
+                            <div class="preferences-card">
+                                <h3 class="card-title">Preferences</h3>
+                                <div class="pref-row">
+                                    <span style="font-size: 1.2rem; font-weight: 600; color:var(--text-secondary)">Dark Mode</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="darkModeToggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <button class="reset-btn" id="resetDataBtn"><i class="ri-delete-bin-line"></i> Reset All Data</button>
+                            </div>
+
+                        </div>
+                        
+                        <div class="section-3">
+                            <div class="table-card">
+                                <div class="card-header"><h2>All Transactions</h2></div>
+                                 <div style="display: flex; gap: 12px; align-items: center; padding-bottom: 1rem;">
+                                    <div class="search-bar">
+                                    <i class="ri-search-line"></i>
+                                        <input type="text" id="searchInput" placeholder="Search transactions...">
+                                    </div>
+                                    <select id="typeFilter"
+                                        style="padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-main); color: var(--text-dark); cursor: pointer; outline: none;">
+                                        <option value="all">All Types</option>
+                                        <option value="income">Income Only</option>
+                                        <option value="expense">Expense Only</option>
+                                    </select>
+                                </div>
+
+
+                                <!-- DESKTOP/TABLET: table -->
+                                <div class="table-wrapper">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>DATE</th>
+                                                <th>DESCRIPTION</th>
+                                                <th>CATEGORY</th>
+                                                <th>AMOUNT</th>
+                                                <th>ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="transactionTableBody">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- MOBILE: cards -->
+                                <div class="transaction-cards" id="transactionCardsBody"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="main-dashboard" id="settings-view" style="display:none;">
+                        <header>
+                            <h2>Settings</h2>
+                            <p>Manage your account profile and app formatting.</p>
+                        </header>
+                        <div class="chart-card">
+                            <h3 class="card-title">Profile Details</h3>
+                            <form id="settingsForm" class="settings-grid">
+                                <div class="settings-field">
+                                    <label>First Name</label>
+                                    <input type="text" id="settingFirstName" required>
+                                </div>
+                                <div class="settings-field">
+                                    <label>Last Name</label>
+                                    <input type="text" id="settingLastName" required>
+                                </div>
+                                <div class="settings-field">
+                                    <label>Username</label>
+                                    <input type="text" id="settingUsername" required>
+                                </div>
+                                <div class="settings-field">
+                                    <label>New Password <span style="font-weight:400; color:var(--text-muted);">(leave blank to keep current)</span></label>
+                                    <input type="password" id="settingPassword" placeholder="••••••••">
+                                </div>
+                                <div class="settings-field">
+                                    <label>Primary Currency</label>
+                                    <select id="settingCurrency">
+                                        <option value="$">USD ($)</option>
+                                        <option value="€">EUR (€)</option>
+                                        <option value="£">GBP (£)</option>
+                                        <option value="₹">INR (₹)</option>
+                                        <option value="¥">JPY (¥)</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="modal-submit">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tras-model" id="addTransactionModal">
+            <div class="transaction-form">
+                <div class="trans-sec1">
+                     <h1 class="transaction-heading">Add Transaction</h1>
+                     <button class="close-btn" id="closeModalBtn"><i class="ri-close-line"></i></button>
+                     
+                </div>
+                <form id="transactionForm">
+                    <label>Type</label>
+                    <select id="trans-type" required>
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                    <label>Description</label>
+                    <input style="margin-bottom: 1rem; font-size: 1rem; padding: 0.3rem;" type="text" id="txDescription" placeholder="e.g. Amazon, Salary, Coffee" required>
+                    <div class="amt-date" >
+                        <div class="amt" style="display: flex; flex-direction: column; width:50%; ">
+                            <label style="padding:0.5rem 0;">Amount</label>
+                            <input style="margin-bottom: 1rem; font-size: 1rem; padding: 0.3rem;" type="number" id="transactionAmount" min="0" step="0.01" required>
+                        </div>
+
+                        <div class="date" style="display: flex; flex-direction: column; width:50%; ">
+                            <label style="padding:0.5rem 0;">Date</label>
+                            <input style="margin-bottom: 1rem; font-size: 1rem; padding: 0.3rem;" type="date" id="transactionDate" required>
+                        </div>
+                       
+                    </div>
+
+                    <label>Category</label>
+                    <select id="transactionCategory" required style="margin-bottom: 1rem; font-size: 1rem; padding: 0.3rem;">
+                        <option value="Food & Dining">Food & Dining</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Recharge & Bills">Recharge & Bills</option>
+                        <option value="Petrol & Auto">Petrol & Auto</option>
+                        <option value="Utilities">Utilities</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <span class="auth-error" id="transactionError"></span>
+                    <button type="submit" class="trans-submit" style="background-color: black; color:whitesmoke; padding:0.5rem; font-size: 1rem; font-weight: 600;">Save Transaction</button>
+
+                    
+                </form>
+
+            </div>
+        </div>
+         <script src="script.js" defer></script>
+    </body>
+</html>
